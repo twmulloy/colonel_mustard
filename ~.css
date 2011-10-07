@@ -1,0 +1,11 @@
+  *{margin: 0; padding: 0;}
+  div{
+   background-color: red;
+  }
+  p{
+   /*required - defined in px*/
+   line-height: 20px;
+  }
+  .column{
+   background: gray;
+  }

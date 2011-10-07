@@ -1,117 +1,29 @@
 <!doctype html>
 <html>
 <head>
- <style>
-  *{margin: 0; padding: 0;}
-  div{
-   background-color: red;
-  }
-  p{
-   /*required - defined in px*/
-   line-height: 20px;
-  }
-  .column{
-   background: gray;
-  }
- </style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<meta charset='utf-8'>
+<link rel='stylesheet' type='text/css' href='~.css' />
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
 <body>
+
 
 <div>
  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 </div>
 
+<hr/>
 
+<div class='text'>
+ <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
+ <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+</div>
+
+<script src='~.js'></script>
 <script>
- (function($){
-
-  function distribute(x, y){
-   var d = [];
-
-   if(x<=0){
-    console.log('nothing to distribute');
-    return d;
-   }else if(x>=y){
-    console.log('distribute 1 until 0');
-    for(var i=0; i<x; i++){
-     d.push(i<y?1:0);
-    }
-    return d;
-   }else if(y%x === 0){
-    console.log('even distribution');
-    for(var i=0; i<x; i++){
-     d.push(y/x);
-    }
-    return d;
-   }else{
-    console.log('uneven distribution');
-    for(var i=0; i<x; i++){
-     //y = Math.floor(y/x)+(y%x);
-     //d.push(y);
-     d.push(y/x)
-    } 
-    return d;
-   }
-  }
-
-  console.log(distribute(0, 8));
-  console.log(distribute(1, 8));
-  console.log(distribute(2, 8));
-  console.log(distribute(3, 8));
-  console.log(distribute(4, 8));
-  console.log(distribute(5, 8));
-
-  console.log(distribute(0, 9));
-  console.log(distribute(1, 9));
-  console.log(distribute(2, 9));
-  console.log(distribute(3, 9));
-  console.log(distribute(4, 9));
-  console.log(distribute(5, 9));
-
-  var
-   // number of columns to create
-   columns = 2,
-   $container = $('div'),
-   $p = $('p'),
-   line_height = $p.eq(0).css('line-height').replace('px', ''),
-   column = {
-    'original':{
-     'width': $container.width(),
-     'height': $container.height()
-    }
-   },
-   lines = column.original.height / line_height,
-   is_odd = lines % 2 ? true : false;
-
-   $p = $p.detach();
-
-   // calculate adjusted dimensions
-   column.adjusted = {
-    'width': column.original.width / columns,
-    'height': lines * line_height * columns
-   };
-
-   // build out each new column
-   for(var i=0; i<columns; i++){
-    var $column = $('<div/>', {'class':'column'});
-
-    // calculate scroll position
-    var scroll_top = column.adjusted.height * (i / columns);
-
-    // scale the column
-    $column
-     .width(column.adjusted.width)
-     .height(column.adjusted.height / columns)
-     .css({
-      'float': 'left',
-      'overflow': 'hidden'
-     })
-     .append($p.clone())
-     .appendTo($container)
-     .scrollTop(scroll_top);
-   }
-
- })(jQuery);
-
+$(function(){
+  $('.text').ಠ_ಠ({
+    columns: 2
+  })
+});
 </script>
