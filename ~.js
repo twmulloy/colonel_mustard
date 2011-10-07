@@ -43,7 +43,8 @@
      'height': $container.height()
     }
    },
-   lines = column.original.height / line_height;
+   lines = column.original.height / line_height,
+   scroll_sum = [];
 
   $p = $p.detach();
 
@@ -54,22 +55,19 @@
   };
 
   // get column dimensions
-  var $column = $('<div/>', {'class':'column'});
+  var $column = $('<div/>', {'class':'column'})
+      .width(column.adjusted.width)
+      .append($p.clone())
+      .appendTo($container),
+    new_lines = $column.height() / line_height,
+    dist = dist(opts.cols, new_lines);
 
-  $column
-    .width(column.adjusted.width)
-    .append($p.clone())
-    .appendTo($container);
+  $column.detach();
 
-  var new_lines = $column.height() / line_height,
-    dist = dist(opts.cols, new_lines),
-    scroll_sum = [];
 
   // build out each new column
   $.each(dist, function(i, val){
-
-    var $col = $('<div/>', {'class':'column'});
-
+   var $col = $('<div/>', {'class':'column'});
    column.adjusted.heights[i] = val * line_height;
    scroll_sum[i] = (scroll_sum[i-1] || 0) + column.adjusted.heights[i];
 
