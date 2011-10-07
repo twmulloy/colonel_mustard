@@ -56,29 +56,24 @@
   // get column dimensions
   var $column = $('<div/>', {'class':'column'});
 
-   $column
+  $column
     .width(column.adjusted.width)
     .append($p.clone())
     .appendTo($container);
 
-  var new_lines = $column.height() / line_height;
-
-  $column.detach();
-
-  // get distribution
-  var dist = dist(opts.cols, new_lines);
-  var scroll_sum = [];
+  var new_lines = $column.height() / line_height,
+    dist = dist(opts.cols, new_lines),
+    scroll_sum = [];
 
   // build out each new column
   $.each(dist, function(i, val){
 
-   column.adjusted.heights[i] = val * line_height;
+    var $col = $('<div/>', {'class':'column'});
 
+   column.adjusted.heights[i] = val * line_height;
    scroll_sum[i] = (scroll_sum[i-1] || 0) + column.adjusted.heights[i];
 
    // scale the column
-   var $col = $('<div/>', {'class':'column'});
-   
    $col
     .width(column.adjusted.width)
     .height(column.adjusted.heights[i])
