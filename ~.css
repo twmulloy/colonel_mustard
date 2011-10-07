@@ -5,6 +5,8 @@ div{
 p{
  /*required - defined in px*/
  line-height: 20px;
+ padding: 10px;
+ margin: 10px;
 }
 .column{
  background: gray;

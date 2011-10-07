@@ -8,7 +8,7 @@
 
 (function($){
 
- $.fn.ಠ_ಠ = function(options){
+ $.fn.ಠ_ಠ = function(cols, css){
 
   function dist(x, y){
    var d=[];
@@ -30,7 +30,7 @@
   }
 
   var opts = {
-   cols: options.columns || 0
+   cols: cols || 1
   };
 
   var
@@ -48,9 +48,14 @@
 
   $p = $p.detach();
 
+  $p.css({
+    'margin': 0,
+    'padding': 0
+  });
+
   // calculate adjusted dimensions
   column.adjusted = {
-   'width': column.original.width / opts.cols,
+   'width': Math.floor(column.original.width / opts.cols),
    'heights': []
   };
 
